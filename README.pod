@@ -1,0 +1,97 @@
+=encoding utf8
+
+=head1 NAME
+
+DateSelectSimple.js
+
+=head1 SYNOPSYS
+    
+  // JavaScript
+  var dss = DateSelectSimple.create({size: 10});
+  $("#date_select").append(dss.component());
+
+  // HTML
+  <div id="date_select"></div>
+
+=head1 DESCRIPTION
+
+DateSelectSimpleは日付を簡単に選択するためのシンプルなコンポーネントです。
+jQueryに依存しています。
+
+以下のような特徴があります。
+
+=over 4
+
+=item *
+
+リストボックスを使って実装されていて縦のサイズを指定することができます。
+
+=item *
+
+月を変更してから、日付を選択することができます。
+
+=item *
+
+コンポーネント形式なので画面にいくつでも追加することができます。
+
+=item *
+
+日付のフォーマットを指定することができます。
+
+=item *
+
+空白の項目をひとつ追加することができます。
+
+=item *
+
+コールバック関数を使って、値を変更したときの処理を記述できます。
+
+=back
+
+=head1 ATTRIBUTES
+
+=head2 C<change>
+
+  var change = dss.change();
+  dss.change(callback);
+
+日付が選択されたときに実行されるコールバック関数。第一引数は
+日付選択のリストボックスを表すjQueryオブジェクト。
+  
+  dss.change(function (date_select) {
+    var selected = date_select.children(':selected')
+    var value = date_select.val();
+    var text = date_select.text();
+  })
+
+=head2 C<caption_format>
+    
+    var caption_format = dss.caption_format();
+    dss.caption_format("%Y年%m月");
+
+キャプションのフォーマット。デフォルトは"%Y年%m月"で
+
+=head2 C<empty_item>
+
+=head2 C<month>
+
+=head2 C<name>
+
+=head2 C<size>
+
+=head2 C<text_format>
+
+=head2 C<year>
+
+=head2 C<value_format>
+
+=head1 METHODS
+
+=head2 C<conponent>
+
+=head2 C<create>
+
+    var dss = DateSelectSimple.create({size: 5});
+
+Create a new DateSelectSimple object.
+
