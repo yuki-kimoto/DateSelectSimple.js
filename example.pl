@@ -104,12 +104,12 @@ __DATA__
     <p>Change date format</p>
     <div id="date_select_jp"></div>
 
-    <h3>Change callback</h3>
+    <h3>Callback</h3>
     <p>Register item change callback</p>
     <div id="date_select_cb"></div>
 
-    <h3>Change callback</h3>
-    <p>Register item change callback</p>
+    <h3>Popup</h3>
+    <p>Popup date selection</p>
     <div><input name="date_input"><input type="button" name="date_button"value="..."></div>
     
     <br>
