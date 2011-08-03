@@ -18,6 +18,7 @@ __DATA__
     
     <%= javascript begin %>
       $(document).ready(function () {
+        
         // Simple
         var dss1 = DateSelectSimple.create();
         $("#date_select1").append(dss1.component());

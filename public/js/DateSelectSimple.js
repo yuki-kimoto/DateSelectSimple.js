@@ -1,5 +1,6 @@
 (
   function () {
+    
     if (window.DateSelectSimple) { return }
     var proto = window.DateSelectSimple = {};
 
@@ -112,7 +113,7 @@
       
       // Event
       var navi_effect = {
-        in: function() {
+        into: function () {
           $(this).css("text-decoration", "underline")
            .css("cursor", "hand")
         },
@@ -139,7 +140,7 @@
       td_year_prev.css("text-align", "left")
         .css("border", "none");
       td_year_prev.children("a").css("text-decoration", "none")
-        .hover(navi_effect.in, navi_effect.out)
+        .hover(navi_effect.into, navi_effect.out)
         .click(function () { return year_forward(-1) });
       
       // Privious month
@@ -147,7 +148,7 @@
       td_month_prev.css("text-align", "left")
         .css("border", "none");
       td_month_prev.children("a").css("text-decoration", "none")
-        .hover(navi_effect.in, navi_effect.out)
+        .hover(navi_effect.into, navi_effect.out)
         .click(function () { return month_forward(-1) });
       
       // Next month
@@ -155,7 +156,7 @@
       td_month_next.css("text-align", "right")
         .css("border", "none");
       td_month_next.children("a").css("text-decoration", "none")
-        .hover(navi_effect.in, navi_effect.out)
+        .hover(navi_effect.into, navi_effect.out)
         .click(function () { return month_forward(1) });
       container.append(table);
 
@@ -164,7 +165,7 @@
       td_year_next.css("text-align", "right")
         .css("border", "none");
       td_year_next.children("a").css("text-decoration", "none")
-        .hover(navi_effect.in, navi_effect.out)
+        .hover(navi_effect.into, navi_effect.out)
         .click(function () { return year_forward(1) });
       container.append(table);
       
