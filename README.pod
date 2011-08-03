@@ -66,22 +66,22 @@ jQueryに依存しています。
 
 =head2 C<caption_format>
     
-    var caption_format = dss.caption_format();
-    dss.caption_format("%Y年%m月");
+  var caption_format = dss.caption_format();
+  dss.caption_format("%Y年%m月");
 
 キャプションのフォーマット。デフォルトは"%Y年%m月"で
 
 =head2 C<empty_item>
 
-=head2 C<month>
-
 =head2 C<name>
+
+  dss.caption
+
+  select field C<name> attribute value
 
 =head2 C<size>
 
 =head2 C<text_format>
-
-=head2 C<year>
 
 =head2 C<value_format>
 
