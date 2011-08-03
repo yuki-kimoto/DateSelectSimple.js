@@ -54,6 +54,7 @@ jQueryに依存しています。
     
     http://localhost:3000
 
+動作確認はChrome, IE7, IE8, Firefox5で行っています。
 
 =head1 属性メソッド
 

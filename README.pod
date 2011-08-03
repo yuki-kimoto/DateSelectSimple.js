@@ -57,6 +57,8 @@ You can execute it if you install Perl module L<Mojolicious>
     
     http://localhost:3000
 
+I check DateSelectSimple on Chrome, IE7, IE8, Firefox5.
+
 =head1 ATTRIBUTE METHODS
 
 =head2 C<change>
