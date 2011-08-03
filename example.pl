@@ -59,7 +59,7 @@ __DATA__
         // Popup
         var dss_popup = DateSelectSimple.create();
         var popup = $("<div/>");
-        popup.css("width", "150px")
+        popup.css("width", "180px")
           .css("position", "absolute")
           .css("border", "1px black solid")
           .css("background-color", "white");

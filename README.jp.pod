@@ -1,0 +1,140 @@
+=encoding utf8
+
+=head1 名前
+
+DateSelectSimple.js
+
+=head1 使い方
+    
+  // JavaScript
+  var dss = DateSelectSimple.create({size: 10});
+  $("#date_select").append(dss.component());
+
+  // HTML
+  <div id="date_select"></div>
+
+=head1 解説
+
+DateSelectSimpleは日付を簡単に選択するためのシンプルなコンポーネントです。
+jQueryに依存しています。
+
+以下のような特徴があります。
+
+=over 4
+
+=item *
+
+リストボックスを使って実装されていて縦のサイズを指定することができます。
+
+=item *
+
+月や年を変更してから、日付を選択することができます。
+
+=item *
+
+日付のフォーマットを指定することができます。
+
+=item *
+
+空白の項目をひとつ追加することができます。
+
+=item *
+
+コールバック関数を使って、値を変更したときの処理を記述できます。
+
+=back
+
+サンプルを見たいなら、同じディレクトリのC<example.pl>を見てください。
+もしPerlのMojoliciousモジュールをインストールするなら、
+それを実行することもできます。
+
+    % cpan Mojolcious
+    
+    % morbo example.pl
+    
+    http://localhost:3000
+
+
+=head1 属性メソッド
+
+=head2 C<change>
+
+  var change = dss.change();
+  dss = dss.change(callback);
+
+日付が選択されたときに実行されるコールバック関数。
+コールバック関数の最初の引数で
+日付選択のためのセレクトフィールドを表す
+C<jQuery>オブジェクトを取得できます。
+  
+  dss.change(function (date_select) {
+    var selected = date_select.children(':selected')
+    var value = date_select.val();
+    var text = date_select.text();
+  })
+
+=head2 C<caption_format>
+    
+  var caption_format = dss.caption_format();
+  dss = dss.caption_format("%Y/%m");
+
+キャプションのフォーマットです。デフォルトはC<%Y-%m>。
+
+%Yは年、%mは月です。
+
+=head2 C<empty_item>
+
+  var empty_item = dss.empty_item();
+  dss = dss.empty_item(true);
+
+この値をC<true>にするとセレクトフィールドの上部に空のアイテムが追加されます。
+デフォルトはC<false>.
+
+=head2 C<name>
+
+  var caption = dss.name();
+  dss = dss.name("date_select");
+
+セレクトフィールドのC<name>属性の値です。デフォルトはC<date>。
+
+=head2 C<size>
+
+  var size = dss.size();
+  dss = dss.name(5);
+
+セレクトフィールドの縦のサイズです。デフォルトはC<1>。
+
+=head2 C<text_format>
+
+  var text_format = dss.text_format();
+  dss = dss.text_format("%Y/%m/%d(%a)");
+
+セレクトフィールドのテキストのフォーマットです。デフォルトはC<%Y-%m-%d(%a)>。
+
+%Yは年、%mは月、%dは日付、%aは曜日です。
+
+=head2 C<value_format>
+
+  var text_format = dss.value_format();
+  dss = dss.value_format("%Y/%m/%d");
+
+セレクトフィールドのC<value>のフォーマットです。デフォルトはC<%Y-%m-%d>。
+
+%Yは年、%mは月、%dは日付、%aは曜日です。
+
+=head1 メソッド
+
+=head2 C<conponent>
+
+    var component = dss.component();
+
+日付選択のコンポーネントを表すC<jQuery>オブジェクトを取得します。
+このメソッドは全ての属性の設定が終わってから呼び出す必要があります。
+
+=head2 C<create>
+
+    var dss = DateSelectSimple.create({size: 5});
+
+新しいDateSelectSimpleオブジェクトを生成します。
+
+=cut

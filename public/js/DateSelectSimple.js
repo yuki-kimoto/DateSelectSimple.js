@@ -87,7 +87,7 @@
       // Container
       var container = $("<div/>");
       container.css("text-align", "center")
-        .css("width", "140px");
+        .css("width", "180px");
       
       // Display year and display
       var table = $('<table align="center"/>');
@@ -95,15 +95,19 @@
         .css("border", "none");
       var tr = $('<tr/>');
       tr.css("border", "none");
-      var td_left = $('<td/>');
-      var td_center = $('<td/>');
-      var td_right = $('<td/>');
-      td_center.text(this._caption())
-      td_center.css("text-align", "center")
+      var td_year_prev = $('<td/>');
+      var td_month_prev = $('<td/>');
+      var td_caption = $('<td/>');
+      var td_month_next = $('<td/>');
+      var td_year_next = $('<td/>');
+      td_caption.text(this._caption())
+      td_caption.css("text-align", "center")
         .css("border", "none");
-      tr.append(td_left);
-      tr.append(td_center);
-      tr.append(td_right);
+      tr.append(td_year_prev);
+      tr.append(td_month_prev);
+      tr.append(td_caption);
+      tr.append(td_month_next);
+      tr.append(td_year_next);
       table.append(tr);
       
       // Event
@@ -118,26 +122,50 @@
       };
       var month_forward = function(add) {
           that._add_month(add);
-          td_center.text(that._caption());
+          td_caption.text(that._caption());
           that._update_date_select();
           return false;
       };
+
+      var year_forward = function(add) {
+          that.year(that.year() + add);
+          td_caption.text(that._caption());
+          that._update_date_select();
+          return false;
+      };
+
+      // Privious year
+      td_year_prev.html('<a href="#">&lt&lt</a>');
+      td_year_prev.css("text-align", "left")
+        .css("border", "none");
+      td_year_prev.children("a").css("text-decoration", "none")
+        .hover(navi_effect.in, navi_effect.out)
+        .click(function () { return year_forward(-1) });
       
       // Privious month
-      td_left.html('<a href="#">&lt&lt</a>');
-      td_left.css("text-align", "left")
+      td_month_prev.html('<a href="#">&lt</a>');
+      td_month_prev.css("text-align", "left")
         .css("border", "none");
-      td_left.children("a").css("text-decoration", "none")
+      td_month_prev.children("a").css("text-decoration", "none")
         .hover(navi_effect.in, navi_effect.out)
         .click(function () { return month_forward(-1) });
       
       // Next month
-      td_right.html('<a href="#">&gt&gt</a>');
-      td_right.css("text-align", "right")
+      td_month_next.html('<a href="#">&gt</a>');
+      td_month_next.css("text-align", "right")
         .css("border", "none");
-      td_right.children("a").css("text-decoration", "none")
+      td_month_next.children("a").css("text-decoration", "none")
         .hover(navi_effect.in, navi_effect.out)
         .click(function () { return month_forward(1) });
+      container.append(table);
+
+      // Next year
+      td_year_next.html('<a href="#">&gt&gt</a>');
+      td_year_next.css("text-align", "right")
+        .css("border", "none");
+      td_year_next.children("a").css("text-decoration", "none")
+        .hover(navi_effect.in, navi_effect.out)
+        .click(function () { return year_forward(1) });
       container.append(table);
       
       // Date selection

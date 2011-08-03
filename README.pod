@@ -15,48 +15,58 @@ DateSelectSimple.js
 
 =head1 DESCRIPTION
 
-DateSelectSimpleは日付を簡単に選択するためのシンプルなコンポーネントです。
-jQueryに依存しています。
+DateSelectSimple is simple component to select date.
+This is dependent on only C<jQuery>. 
 
-以下のような特徴があります。
+DateSelectSimple has the following features.
 
 =over 4
 
 =item *
 
-リストボックスを使って実装されていて縦のサイズを指定することができます。
+This component is consist of select filed, you can specify virtical size.
 
 =item *
 
-月を変更してから、日付を選択することができます。
+You can select date after changing year or month.
 
 =item *
 
-コンポーネント形式なので画面にいくつでも追加することができます。
+You can append it to the parent as many.
 
 =item *
 
-日付のフォーマットを指定することができます。
+Date format support
 
 =item *
 
-空白の項目をひとつ追加することができます。
+Empty item support
 
 =item *
 
-コールバック関数を使って、値を変更したときの処理を記述できます。
+Callback function executed after changing date.
 
 =back
 
-=head1 ATTRIBUTES
+If you want to see examples, see C<example.pl> in same directory.
+You can execute it if you install Perl module L<Mojolicious>
+
+    % cpan Mojolcious
+    
+    % morbo example.pl
+    
+    http://localhost:3000
+
+=head1 ATTRIBUTE METHODS
 
 =head2 C<change>
 
   var change = dss.change();
-  dss.change(callback);
+  dss = dss.change(callback);
 
-日付が選択されたときに実行されるコールバック関数。第一引数は
-日付選択のリストボックスを表すjQueryオブジェクト。
+Callback function when date is selected.
+by callback function first argument, You can receive
+C<jQuery> object, which is select field for date select
   
   dss.change(function (date_select) {
     var selected = date_select.children(':selected')
@@ -67,27 +77,60 @@ jQueryに依存しています。
 =head2 C<caption_format>
     
   var caption_format = dss.caption_format();
-  dss.caption_format("%Y年%m月");
+  dss = dss.caption_format("%Y/%m");
 
-キャプションのフォーマット。デフォルトは"%Y年%m月"で
+Caption format, default to C<%Y-%m>.
+
+%Y is year, %m is month.
 
 =head2 C<empty_item>
 
+  var empty_item = dss.empty_item();
+  dss = dss.empty_item(true);
+
+If this value is true, empty item is append to top of select field,
+default to C<false>.
+
 =head2 C<name>
 
-  dss.caption
+  var caption = dss.name();
+  dss = dss.name("date_select");
 
-  select field C<name> attribute value
+Select field C<name> attirubte value, default to C<date>.
 
 =head2 C<size>
 
+  var size = dss.size();
+  dss = dss.name(5);
+
+Select field virtical size, default to C<1>.
+
 =head2 C<text_format>
 
+  var text_format = dss.text_format();
+  dss = dss.text_format("%Y/%m/%d(%a)");
+
+Select filed text format, default to C<%Y-%m-%d(%a)>.
+
+%Y is year, %m is month, %d is month day, %a is week day.
+
 =head2 C<value_format>
+
+  var text_format = dss.value_format();
+  dss = dss.value_format("%Y/%m/%d");
+
+Select field C<value> format, default to C<%Y-%m-%d>.
+
+%Y is year, %m is month, %d is month day, %a is week day.
 
 =head1 METHODS
 
 =head2 C<conponent>
+
+    var component = dss.component();
+
+Get C<jQuery> object indicating date select component.
+This must be called after attribute settings.
 
 =head2 C<create>
 
@@ -95,3 +138,23 @@ jQueryに依存しています。
 
 Create a new DateSelectSimple object.
 
+=head1 BUGS
+
+Please tell me bugs if found.
+
+C<< <kimoto.yuki at gmail.com> >>
+
+L<http://github.com/yuki-kimoto/DateSelectSimple.js>
+
+=head1 AUTHOR
+
+Yuki Kimoto, C<< <kimoto.yuki at gmail.com> >>
+
+=head1 COPYRIGHT & LICENSE
+
+Copyright 2009-2011 Yuki Kimoto, all rights reserved.
+
+This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+=cut
