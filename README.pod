@@ -135,7 +135,7 @@ Select field C<value> format, default to C<%Y-%m-%d>.
 
 =head1 METHODS
 
-=head2 C<conponent>
+=head2 C<component>
 
     var component = dss.component();
 
