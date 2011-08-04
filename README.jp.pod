@@ -83,6 +83,13 @@ C<jQuery>オブジェクトを取得できます。
 
 %Yは年、%mは月です。
 
+=head2 C<days>
+
+    var days = dss.days();
+    dss = dss.days(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]);
+
+Week day names,
+
 =head2 C<empty_item>
 
   var empty_item = dss.empty_item();
