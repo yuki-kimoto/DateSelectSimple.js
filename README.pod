@@ -140,13 +140,20 @@ Select field C<value> format, default to C<%Y-%m-%d>.
     var component = dss.component();
 
 Get C<jQuery> object indicating date select component.
-This must be called after attribute settings.
+This method must be called after attribute settings finished.
 
 =head2 C<create>
 
     var dss = DateSelectSimple.create({size: 5});
 
 Create a new DateSelectSimple object.
+
+=head2 C<popup>
+
+    var popup = dss.popup({x: 50, y: 50});
+
+Get C<jQuery> object indicating popup window which contain date select component.
+This method must be called after attribute settings fininsed.
 
 =head1 BUGS
 

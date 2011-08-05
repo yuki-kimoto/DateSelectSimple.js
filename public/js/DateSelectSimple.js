@@ -256,6 +256,7 @@
         .hover(this._navi_effect().into, this._navi_effect().out)
         .click(function () {
           popup.remove();
+          return false;
         });
       div_remove_button.append(a_remove_button);
       popup.append(div_remove_button);

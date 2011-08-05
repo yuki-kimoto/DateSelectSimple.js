@@ -145,4 +145,12 @@ Week day names,
 
 新しいDateSelectSimpleオブジェクトを生成します。
 
+=head2 C<popup>
+
+    var popup = dss.popup({x: 50, y: 50});
+
+日付選択のコンポーネントを含んでいるポップアップウィンドウを
+表すC<jQuery>オブジェクトを取得します。
+このメソッドは全ての属性の設定が終わってから呼び出す必要があります。
+
 =cut

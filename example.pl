@@ -60,28 +60,17 @@ __DATA__
         $("#date_select_cb").append(dss_cb.component());
 
         // Popup
-        var dss_popup = DateSelectSimple.create();
-        var popup = $("<div/>");
-        popup.css("width", "180px")
-          .css("position", "absolute")
-          .css("border", "1px black solid")
-          .css("background-color", "white");
-        dss_popup.change(function (select) {
-          var selected = select.children(":selected");
-          $('input[name="date_input"]').val(selected.val());
-          popup.hide();
-        });
-        var popup_exists;
         $('input[name="date_button"]').click(function (event) {
-          if (!popup_exists) {
-            $(this).parent().append(popup);
-            popup_exists = true;
-          }
-          popup.css("left", event.pageX)
-            .css("top", event.pageY)
-            .show();
+          var dss = DateSelectSimple.create();
+          var popup;
+          dss.change(function (select) {
+            var selected = select.children(":selected");
+            $('input[name="date_input"]').val(selected.val());
+            popup.remove();
+          });
+          popup = dss.popup({x: event.pageX, y: event.pageY});
+          $("body").append(popup);
         });
-        popup.append(dss_popup.component());
       });
     <% end %>
     
