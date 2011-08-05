@@ -5,8 +5,8 @@
     var proto = window.DateSelectSimple = {};
 
     // Attributes
-    var attrs = ["change", "caption_format", "days", "empty_item", "month",
-      "name", "size", "text_format", "value_format", "year"];
+    var attrs = ["change", "caption_format", "days", "empty_item",
+      "name", "size", "text_format", "value_format"];
     for (var i = 0; i < attrs.length; i++) {
       var attr = attrs[i];
       proto[attr] = (function () {
@@ -20,7 +20,28 @@
         }
       }());
     }
-     
+    proto.month = function (month) {
+      if (arguments.length) {
+        var month = arguments[0];
+        if (typeof month === "String") {
+          month = parseInt(month);
+        }
+        this["_month"] = parseInt(month);
+      }
+      return this["_month"]
+    };
+    
+    proto.year = function (year) {
+      if (arguments.length) {
+        var year = arguments[0];
+        if (typeof year === "String") {
+          year = parseInt(year);
+        }
+        this["_year"] = parseInt(year);
+      }
+      return this["_year"]
+    };
+    
     // Methods
     proto.component = function () {
         if (!this._component) { this._component = this._create_component() }
@@ -47,7 +68,7 @@
       var today = new Date();
       this.year(today.getFullYear());
       this.month(today.getMonth() + 1);
-      for (name in args) { this["_" + name] = args[name] }
+      for (name in args) { this[name](args[name]) }
     };
     
     proto._add_month = function (add_month) {
@@ -62,7 +83,21 @@
       }
       return this;
     };
-
+    
+    proto._navi_effect = function () {
+      return {
+        into: function () {
+          $(this).css("text-decoration", "underline")
+            .css("cursor", "hand");
+          return false;
+        },
+        out: function () {
+          $(this).css("text-decoration", "none");
+          return false;
+        }
+      }
+    };
+    
     proto._last_mday = function (year, month) {
     	var next_year;
     	var next_month;
@@ -112,15 +147,6 @@
       table.append(tr);
       
       // Event
-      var navi_effect = {
-        into: function () {
-          $(this).css("text-decoration", "underline")
-           .css("cursor", "hand")
-        },
-        out: function () {
-          $(this).css("text-decoration", "none");
-        }
-      };
       var month_forward = function(add) {
           that._add_month(add);
           td_caption.text(that._caption());
@@ -136,6 +162,8 @@
       };
 
       // Privious year
+      var navi_effect = this._navi_effect();
+      
       td_year_prev.html('<a href="#">&lt&lt</a>');
       td_year_prev.css("text-align", "left")
         .css("border", "none");
@@ -172,9 +200,10 @@
       // Date selection
       container.append(this._date_select);
       var date_select = this._date_select;
-      date_select.attr("name", this.name());
-      date_select.attr("size", this.size());
-      date_select.change(function () { that.change()($(this)) });
+      date_select
+        .attr("name", this.name())
+        .attr("size", this.size())
+        .change(function () { that.change()($(this)) });
       this._update_date_select();
       
       return container;
@@ -208,6 +237,30 @@
     
     proto._option_value = function (mday) {
       return this._format(this.value_format(), this.year(), this.month(), mday);
+    };
+    
+    proto.popup = function (args) {
+      var popup = $("<div/>");
+      popup.css("background-color", "white")
+        .css("border", "1px solid #999999")
+        .css("position", "absolute")
+        .css("left", args.x)
+        .css("top", args.y)
+        .css("width", "180px");
+      popup.append(this._create_component());
+
+      var div_remove_button = $("<div/>");
+      div_remove_button.css("text-align", "right");
+      var a_remove_button = $('<a href="#">×</a>');
+      a_remove_button.css("font-size", "75%")
+        .hover(this._navi_effect().into, this._navi_effect().out)
+        .click(function () {
+          popup.remove();
+        });
+      div_remove_button.append(a_remove_button);
+      popup.append(div_remove_button);
+      
+      return popup;
     };
 
     proto._update_date_select = function () {

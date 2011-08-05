@@ -36,7 +36,9 @@ __DATA__
         var dss4 = DateSelectSimple.create({
           caption_format: "%Y/%m",
           text_format: "%Y/%m/%d(%a)",
-          value_format: "%Y/%m/%d"
+          value_format: "%Y/%m/%d",
+          year: "2009",
+          month: "12"
         });
         $("#date_select4").append(dss4.component());
 
