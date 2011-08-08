@@ -26,7 +26,7 @@
         if (typeof month === "String") {
           month = parseInt(month);
         }
-        this["_month"] = parseInt(month);
+        this["_month"] = parseInt(month, 10);
       }
       return this["_month"]
     };
@@ -37,7 +37,7 @@
         if (typeof year === "String") {
           year = parseInt(year);
         }
-        this["_year"] = parseInt(year);
+        this["_year"] = parseInt(year, 10);
       }
       return this["_year"]
     };

@@ -38,7 +38,7 @@ __DATA__
           text_format: "%Y/%m/%d(%a)",
           value_format: "%Y/%m/%d",
           year: "2009",
-          month: "12"
+          month: "08"
         });
         $("#date_select4").append(dss4.component());
 
